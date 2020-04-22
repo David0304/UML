@@ -1,0 +1,28 @@
+@startuml MOODLE
+left to right direction
+skinparam packageStyle rectangle
+actor Profesor
+actor Alumno
+
+rectangle MOODLE {
+    Profesor - (gestiona una materia)
+    Profesor -- (gestiona un grupo)
+    (materia) <.. (creación de materia) : extends
+    (materia) <. (gestiona una materia) : include
+    (gestiona una materia) <.. (modificar contenidos) : extends
+    (gestiona una materia) <.. (modificar tareas) : extends
+    (gestiona una materia) <.. (modificar calificaciones) : extends
+    (gestiona una materia) <.. (modificar grupos) : extends
+    (modificar grupos) ..> (grupo) : include
+    (grupo) <.. (creación de grupo) : extends
+    (grupo) <.. (gestiona un grupo) : include
+    (gestiona un grupo) <.. (modificar Alumno) : extends
+    (gestiona un grupo) <.. (añadir Alumno) : extends
+    (gestiona un grupo) <.. (eliminar Alumno) : extends
+    Alumno -- (Curso)
+    (Curso) ..> (materia) : include
+    (Curso) <.. (subir las tareas) : extends
+    (Curso) <.. (consultar contenido) : extends
+    (Curso) <.. (consultar calificaciones) : extends
+}
+@enduml

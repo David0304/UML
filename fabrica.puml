@@ -1,0 +1,26 @@
+@startuml FÁBRICA
+left to right direction
+skinparam packageStyle rectangle
+actor Cliente
+actor Fábrica
+actor Socio
+
+rectangle FÁBRICA {
+    (productos) - Fábrica : Elabora 
+    (obtiene Beneficios) - Socio
+    (productos) - Socio : Retira
+    (ventas productos) - Socio
+    (ventas productos) <... (tienda física) : extends
+    (obtiene beneficios) <. (ventas productos) : include
+    (compra de los productos) - (ventas productos)
+    (tienda física) ..> (lotes de productos) : include
+    (ventas productos) <... (a otros Socios) : extends
+    (ventas productos) <... (tienda de Fábrica) : extends
+    (ventas productos) <... (página web) : extends
+    (app) <. (precio de los productos) : include
+    (app) <. (catálogo de los productos) : include
+    (app) <. (pedidos) : include
+    Cliente - (compra los productos)
+    Cliente - (página web) : consulta
+}
+@enduml
